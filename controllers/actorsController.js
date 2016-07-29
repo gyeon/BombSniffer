@@ -1,5 +1,5 @@
-var moviesController = (function(){
-  function searchMovies() {
+var actorssController = (function(){
+  function searchActors() {
     var userInput = $('#searchTerms').val()
 
     $('#movies').empty()
@@ -25,6 +25,6 @@ var moviesController = (function(){
     })
   }
   return {
-    searchMovies
+    searchActors
   }
 }())
