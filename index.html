@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BombSniffer</title>
+    <script src="models/actor.js"></script>
+    <script src="models/director.js"></script>
+    <script src="models/movie.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/moviesController.js"></script>
+  </head>
+  <body>
+    <h1>BombSniffer</h1>
+
+    <form>
+      <input type="text" name="searchTerms" id="searchTerms" placeholder="search" onsubmit="preventDefault() ">
+      <select id="searchType">
+        <option value="actor" id="searchActor">Seach by Actor</option>
+        <option value="director" id="searchDirector">Seach by Director</option>
+      </select><br>
+      <input type="submit">
+    </form>
+
+  </body>
+</html>
