@@ -1,4 +1,4 @@
-var actorssController = (function(){
+var actorsController = (function(){
   function searchActors() {
     var userInput = $('#searchTerms').val()
 
@@ -12,8 +12,6 @@ var actorssController = (function(){
         method: "GET",
         url: `https://api.themoviedb.org/3/discover/movie?with_cast=${personId}&sort_by=vote_average.asc&api_key=bcd69b485671c77289868b4acf21bcf0`
       }).done(function(response) {
-        debugger
-
         var $title = response.results[0].title
         var $year = response.results[0].release_date.split("-")[0]
         var $overview = response.results[0].overview

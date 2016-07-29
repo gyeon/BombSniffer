@@ -7,6 +7,7 @@ const Store = {
 $(function() {
   $('form').on('submit', function(event) {
     event.preventDefault()
-    moviesController.searchMovies()
+    //actorsController.searchMovies()
+    directorsController.directorsMovies()
   })
 })
