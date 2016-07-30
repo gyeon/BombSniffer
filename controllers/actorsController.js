@@ -22,16 +22,29 @@ var actorsController = (function(){
 
             var movie = new Movie($title, $year,"its ok", $overview, $poster)
 
-            $('#movies').append(
-              `<h3>${movie.name}</h3><br>
-              <img src='${movie.poster}'/><br>
-              <h4>Released in: ${movie.year}</h4>
-              <strong><p>${movie.review}</p></strong><br><br>`
+            $('#movieTitles').append(
+              // `<h3>${movie.name}</h3><br>
+              // <img src='${movie.poster}'/><br>
+              // <h4>Released in: ${movie.year}</h4>
+              // <strong><p>${movie.review}</p></strong><br><br>`
+              `<div class="col-md-2">
+                <h5>${movie.name}</h5>
+                <h6>${movie.year}</h6>
+              </div>`
+            )
+            $('#moviePosters').append(
+              `<div class="col-md-2">
+                <img src="${movie.poster}" class="img-thumbnail" style="width:150px;height:150px">
+              </div>`
+            )
+            $('#movieReviews').append(
+              `<div class="col-md-2">
+                <p>${movie.review}</p>
+              </div>`
             )
           } else {j +=1}
         }
 // constructor(name, year, rating, review, poster, studio, boxOffice) {
-
 
       })
     })
