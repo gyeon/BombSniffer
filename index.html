@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>BombSniffer</title>
+  <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
     <script src="lib/jquery.js"></script>
     <script src="models/actor.js"></script>
     <script src="models/director.js"></script>
@@ -10,20 +14,33 @@
     <script src="app.js"></script>
     <script src="controllers/directorsController.js"></script>
     <script src="controllers/actorsController.js"></script>
+
+    <style>
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img {
+          width: 70%;
+          margin: auto;
+      }
+    </style>
   </head>
+
   <body>
-    <h1>BombSniffer</h1>
-    <form>
-      <input type="text" name="searchTerms" id="searchTerms" placeholder="search" onsubmit="preventDefault() ">
-      <select id="searchType">
-        <option value="actor" id="searchActor">Seach by Actor</option>
-        <option value="director" id="searchDirector">Seach by Director</option>
-      </select><br>
-      <input type="submit">
-    </form>
-    <div id="movies">
-
+    <div class="container-fluid">
+      <h1>BombSniffer</h1>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input class="form-control" type="text"  name="searchTerms" id="searchTerms" placeholder="search">
+          </div>
+          <select id="searchType" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+              <option value="actor" id="searchActor">Seach by Actor</option>
+              <option value="director" id="searchDirector">Seach by Director</option>
+          </select><br>
+          <input type="submit" class="btn btn-default">
+        </form>
+        <!-- <div id="movies"></div> -->
     </div>
-
+    <!-- bootstrap for javascript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
+
