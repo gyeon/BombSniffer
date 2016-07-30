@@ -12,6 +12,11 @@ var actorsController = (function(){
         method: "GET",
         url: `https://api.themoviedb.org/3/discover/movie?with_cast=${personId}&sort_by=vote_average.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
       }).done(function(response) {
+        var $title = response.results[0].title
+        var $year = response.results[0].release_date.split("-")[0]
+        var $overview = response.results[0].overview
+        var $poster = "http://image.tmdb.org/t/p/w500" + response.results[0].poster_path
+        $('#movies').append(`<p> ${$title} </p>`)
         // debugger
         j = 5
         for (var i = 0; i < j; i++) {
