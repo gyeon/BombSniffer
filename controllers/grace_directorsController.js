@@ -1,8 +1,6 @@
-var directorsController = (function(){
+var grace_directorsController = (function(){
   function searchDirectors() {
     var userInput = $('#searchTerms').val()
-
-    $('#movies').empty()
     $.ajax({
       method: "GET",
       url: `https://api.themoviedb.org/3/search/person?query=${userInput}&api_key=bcd69b485671c77289868b4acf21bcf0`
@@ -10,7 +8,7 @@ var directorsController = (function(){
       var personId = response.results[0].id
       $.ajax({
         method: "GET",
-        url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&sort_by=revenue.asc&vote_average.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
+        url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&sort_by=revenue.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
       }).done(function(response) {
         j = 5
         for (var i = 0; i < j; i++) {
