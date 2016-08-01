@@ -1,11 +1,11 @@
 var Movie = (function(){
   counter = 1
   return class {
-    constructor(name, year, rating, review, poster, studio, boxOffice) {
+    constructor(name, year, movieId, overview, poster, studio, boxOffice) {
       this.name = name;
       this.year = year;
-      this.rating = rating;
-      this.review = review;
+      this.movieId = movieId;
+      this.overview = overview;
       this.poster = poster;
       this.studio = studio;
       this.boxOffice = boxOffice;

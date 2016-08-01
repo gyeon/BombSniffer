@@ -24,25 +24,20 @@ var actorsController = (function(){
           var $youtubeId
           if (mov.poster_path && !Store.movies.map((m) => m.name).includes($title)){
             // debugger
-            var movie = new Movie($title, $year,"its ok", $overview, $poster)
+            var movie = new Movie($title, $year, $movieId, $overview, $poster)
 
-
-            // debugger
-            $('#movieTitles').append(
-              `<div class="col-md-2">
-                <h5>${movie.name}</h5>
-                <h6>${movie.year}</h6>
-              </div>`
-            );
-
-            $('#movieReviews').append(
-              `<div class="col-md-2">
-                <p>${movie.review}</p>
-              </div>`
-            );
-            $('#moviePosters').append(
-              `<div class="col-md-2" id="posterContainer">
-                <img src="${movie.poster}" class="img-thumbnail" id='poster' style="width:150px;height:150px">
+            $('#results').append(
+              `<div class="col-md-2" id="${$movieId}">
+                <div class="movieTitles">
+                  <h5>${movie.name}</h5>
+                  <h6>${movie.year}</h6>
+                </div>
+                <div class="moviePosters">
+                   <img src="${movie.poster}" class="img-thumbnail" id='poster' style="width:150px;height:150px">
+                </div>
+                <div class="movieOverviews"> 
+                   <p>${movie.overview}</p>
+                </div>
               </div>`
             );
             // debugger
