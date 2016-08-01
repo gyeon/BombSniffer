@@ -11,10 +11,16 @@ $(function() {
     var searchType = $("select#searchType").val()
     if(searchType === "actor") {
       actorsController.searchActors()
-
+      
     }
     else {
-      directorsController.searchDirectors()
+      // var prom = new Promise (function(resolve){
+        directorsController.searchDirectors()
+
+        
+      // })
+      // prom.then(directorsController.appendData)
     }
   })
+  
 })

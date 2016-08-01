@@ -1,71 +1,155 @@
 var directorsController = (function(){
   function searchDirectors() {
+    // debugger
+    //get user input 
     var userInput = $('#searchTerms').val()
-
-    $('#movies').empty()
+    //search for person 
     $.ajax({
       method: "GET",
       url: `https://api.themoviedb.org/3/search/person?query=${userInput}&api_key=bcd69b485671c77289868b4acf21bcf0`
     }).done(function(response){
+      // debugger
+
       var personId = response.results[0].id
       $.ajax({
+        //search for movies of that person 
         method: "GET",
-        url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&sort_by=revenue.asc&vote_average.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
+        url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&sort_by=vote_average.asc&revenue.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
       }).done(function(response) {
-        j = 5
-        for (var i = 0; i < j; i++) {
-          var mov = response.results[i]
-          var $title = mov.title
-          var $movieId = mov.id
-          var $year = mov.release_date.split("-")[0]
-          var $overview = mov.overview
-          var $poster = "http://image.tmdb.org/t/p/w500" + mov.poster_path
-          var $youtubeId
-           if (mov.poster_path && !Store.movies.map((m) => m.name).includes($title)){
-            var movie = new Movie($title, $year, $movieId, $overview, $poster)
+        // debugger
+        //make all movie object for that actor 
+        response.results.forEach((m) => {
+          var $title = m.title
+          var $year = m.release_date.split("-")[0]
+          var $movieId = m.id
+          var $overview = m.overview
+          var $poster = "http://image.tmdb.org/t/p/w500" + m.poster_path
+          new Movie($title, $year, $movieId, $overview, $poster)
+          
+        })
+        // debugger
+        
+      }).then(getMovieInfo)
+      // debugger
+      
+    })
+    // debugger
+    
+  }
 
-            $('#results').append(
-              `<div class="col-md-2" id="${$movieId}">
-                <div class="movieTitles">
-                  <h5>${movie.name}</h5>
-                  <h6>${movie.year}</h6>
-                </div>
-                <div class="moviePosters">
-                   <img src="${movie.poster}" class="img-thumbnail" id='poster' style="width:150px;height:150px">
-                </div>
-                <div class="movieOverviews"> 
-                   <p>${movie.overview}</p>
-                </div>
-              </div>`
-            );
-          } else {j +=1}
-          $.ajax({
-            method: "GET",
-            url: `https://api.themoviedb.org/3/movie/${$movieId}?&api_key=bcd69b485671c77289868b4acf21bcf0&append_to_results=imdb_id`
-            }).done(function(response) {
-            if (mov.poster_path && !Store.movies.map((m) => m.name).includes($title)){
-              var movie = new Movie($title, $year, $movieId, $overview, $poster)
 
-              var revenue = response.revenue
-              var budget = response.budget
-              var imdb_id = response.imdb_id
-               $(`#${$movieId}`).append(
-                `<div class="movieImdb">
-                  <h6>${imdb_id}</h6>
-                </div>
-                <div class="money">
-                  <h6> Budget: ${budget}</h6>
-                  <h6> Revenue:${revenue}</h6>
-                </div>`)
-            })
-        }
+  function getMovieInfo(){
+    debugger
+    //assign movies more information 
+    Store.movies.forEach((m) => {
+          // debugger
+      $.ajax({
+          method: "GET",
+          url: `https://api.themoviedb.org/3/movie/${m.movieId}?&api_key=bcd69b485671c77289868b4acf21bcf0&append_to_results=imdb_id`
+        }).done(function(response) {
+          console.log(response.revenue)
+          m.revenue = response.revenue 
+          m.budget = response.budget
+          m.imdbId = response.imdb_id
+        }).then(getYoutube)
+          // debugger
+      })
+    
+  }
+
+  function getYoutube(){
+    //assign movies youtube
+    // debugger
+    var prom
+    Store.movies.forEach((m) => {
+      prom = $.ajax({
+      method: "GET",
+      url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${m.name.split(" ").join("+")}+trailer&key=AIzaSyDzIKgrZXiQZjPCJT1GcTEggK09QCYESw0`
+      }).done(function(yt){
+        // debugger
+        m.youtubeLink = `https://youtube.com/watch?v=${yt.items[0].id.videoId}`
+      })
+      
+    }) 
+    if (Store.movies[Store.movies.length - 1].youtubeLink) {
+      prom.then(appendData)
+    }  
+     
+  }
+
+
+  ///////////////////////////////////////////////////
+
+
+  function filterMovies() {
+    //filter movies so that we only have ones with rev, budget, imbd and poster
+    return Store.movies.filter((m) => { 
+      return m.revenue > 0 && m.budget > 0 && m.imdbId != "" && m.poster.split("/").pop() != "w500null"
+    });
+    // debugger
+    
+     
+  }
+
+  function bottomFive(){
+    var list = filterMovies()
+    debugger
+    var result = []
+    for (i = 0; i < 5; i++){
+      result.push(list[i])
+    }
+    return result
+  }
+
+  function appendData(){
+    debugger
+    bottomFive().forEach((movie) =>{
+      // debugger
+      $('#results').append(
+      `<div class="col-md-2" id="${movie.movieId}">
+        <div class="movieTitles">
+          <h5>${movie.name}</h5>
+          <h6>${movie.year}</h6>
+        </div>
+        <div class="moviePosters">
+          <a target="_blank" href="${movie.youtubeLink}">
+           <img src="${movie.poster}" class="img-thumbnail" id='poster' style="width:150px;height:150px">
+          </a>
+        </div>
+        <div class="movieOverviews"> 
+           <p>${movie.overview}</p>
+        </div>
+      </div>`
+      )
+    })
+  }
+  // debugger
+
+
+        //only want movies with bad reviews and existing revenue
+            
+          
+            
+
+              
+               // $(`#${$movieId}`).append(
+               //  `<div class="movieImdb">
+               //    <h6>${imdb_id}</h6>
+               //  </div>
+               //  <div class="money">
+               //    <h6> Budget: ${budget}</h6>
+               //    <h6> Revenue:${revenue}</h6>
+               //  </div>`)
 // constructor(name, year, rating, review, poster, studio, boxOffice) {
 
 
-      })
-    })
-  }
+      
   return {
-    searchDirectors
+    searchDirectors,
+    getMovieInfo,
+    getYoutube,
+    appendData,
+    filterMovies,
+    bottomFive
   }
 }())
