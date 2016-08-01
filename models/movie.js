@@ -13,7 +13,7 @@ var Movie = (function(){
     }
 
     cast(){
-
+      
     }
 
     director(){
