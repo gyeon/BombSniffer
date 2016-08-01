@@ -8,7 +8,7 @@ var directorsController = (function(){
       method: "GET",
       url: `https://api.themoviedb.org/3/search/person?query=${userInput}&api_key=bcd69b485671c77289868b4acf21bcf0`
     }).done(function(response){
-      // debugger
+      //debugger
 
       var personId = response.results[0].id
       $.ajax({
@@ -34,12 +34,11 @@ var directorsController = (function(){
       
     })
     // debugger
-    
   }
 
 
   function getMovieInfo(){
-    debugger
+    //debugger
     //assign movies more information 
     Store.movies.forEach((m) => {
           // debugger
@@ -51,32 +50,38 @@ var directorsController = (function(){
           m.revenue = response.revenue 
           m.budget = response.budget
           m.imdbId = response.imdb_id
-        }).then(getYoutube)
-          // debugger
+          getYoutube(m)
+          appendData()
+        })
+
+        // debugger
+        
       })
+
     
   }
 
-  function getYoutube(){
+  function getYoutube(m){
     //assign movies youtube
     // debugger
-    var prom
-    Store.movies.forEach((m) => {
-      prom = $.ajax({
+    // var prom
+    // Store.movies.forEach((m) => {
+      $.ajax({
       method: "GET",
       url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${m.name.split(" ").join("+")}+trailer&key=AIzaSyDzIKgrZXiQZjPCJT1GcTEggK09QCYESw0`
       }).done(function(yt){
         // debugger
         m.youtubeLink = `https://youtube.com/watch?v=${yt.items[0].id.videoId}`
       })
-      
-    }) 
-    if (Store.movies[Store.movies.length - 1].youtubeLink) {
-      prom.then(appendData)
-    }  
-     
+    // })
+    // debugger 
+
+    
+    // prom.done(appendData)
+    
   }
 
+//ABOVE THIS WORKS! 
 
   ///////////////////////////////////////////////////
 
@@ -93,7 +98,7 @@ var directorsController = (function(){
 
   function bottomFive(){
     var list = filterMovies()
-    debugger
+    //debugger
     var result = []
     for (i = 0; i < 5; i++){
       result.push(list[i])
@@ -101,8 +106,10 @@ var directorsController = (function(){
     return result
   }
 
+//CANT GET IN HERE 
   function appendData(){
-    debugger
+    console.log("in appendData")
+    $("#results").empty()
     bottomFive().forEach((movie) =>{
       // debugger
       $('#results').append(
@@ -110,6 +117,11 @@ var directorsController = (function(){
         <div class="movieTitles">
           <h5>${movie.name}</h5>
           <h6>${movie.year}</h6>
+        </div>
+        <div class="movieMoney">
+          <h6>Budget: ${movie.budget}</h6>
+          <h6>Revenue: ${movie.revenue}</h6>
+          <h6>Total loss: ${(movie.budget - movie.revenue)}</h6>
         </div>
         <div class="moviePosters">
           <a target="_blank" href="${movie.youtubeLink}">
