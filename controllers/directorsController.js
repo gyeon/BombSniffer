@@ -123,9 +123,9 @@ var directorsController = (function(){
           boxOffice = phrase + money 
         }
       $('#results').append(
-      `<div class="col-md-2" id="${movie.movieId}">
+      `<div class="col-md-2" id="${movie.imdbId}">
         <div class="movieTitles">
-          <h5>${movie.name}</h5>
+          <h5><a target="_blank" href="http://www.imdb.com/title/${movie.imdbId}/">${movie.name}</a></h5>
           <h6>${movie.year}</h6>
         </div>
         <div class="movieMoney">

@@ -17,4 +17,12 @@ $(function() {
     }
   })
   
+  // $('body').on('click', 'div.movieTitles', function(){
+  //   console.log(this)
+  //   imdbId = $(this).parent().attr("id")
+  //   moviesController.imdbFrame(imdbId)
+    
+
+
+// })
 })
