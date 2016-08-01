@@ -14,7 +14,7 @@ var actorsController = (function(){
       $.ajax({
         //search for movies of that person 
         method: "GET",
-        url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&sort_by=vote_average.asc&revenue.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
+        url: `https://api.themoviedb.org/3/discover/movie?with_cast=${personId}&sort_by=vote_average.asc&revenue.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
       }).done(function(response) {
         // debugger
         //make all movie object for that actor 
@@ -111,7 +111,17 @@ var actorsController = (function(){
     console.log("in appendData")
     $("#results").empty()
     bottomFive().forEach((movie) =>{
-      // debugger
+      var boxOffice
+        var phrase = "Box Office Loss: "
+        var money = movie.budget - movie.revenue
+        if(money < 0) {
+          phrase = "Box Office Gain: "
+          money = money*(-1)
+          boxOffice = phrase + money
+        }
+        else {
+          boxOffice = phrase + money 
+        }
       $('#results').append(
       `<div class="col-md-2" id="${movie.movieId}">
         <div class="movieTitles">
@@ -121,7 +131,7 @@ var actorsController = (function(){
         <div class="movieMoney">
           <h6>Budget: ${movie.budget}</h6>
           <h6>Revenue: ${movie.revenue}</h6>
-          <h6>Total loss: ${(movie.budget - movie.revenue)}</h6>
+          <h6>${boxOffice}</h6>
         </div>
         <div class="moviePosters">
           <a target="_blank" href="${movie.youtubeLink}">
