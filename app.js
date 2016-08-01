@@ -17,13 +17,12 @@ $(function() {
     }
   })
   
-  $('movieTitles').on('click', function(event){
-    event.preventDefault();
-    debugger
-    imdbId = $(this).parent().attr("id")
-    moviesController.imdbFrame(imdbId)
+  // $('body').on('click', 'div.movieTitles', function(){
+  //   console.log(this)
+  //   imdbId = $(this).parent().attr("id")
+  //   moviesController.imdbFrame(imdbId)
     
 
 
-})
+// })
 })
