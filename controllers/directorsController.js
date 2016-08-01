@@ -22,7 +22,7 @@ var directorsController = (function(){
           var $poster = "http://image.tmdb.org/t/p/w500" + mov.poster_path
           var $youtubeId
           if (mov.poster_path && !Store.movies.map((m) => m.name).includes($title)){
-            // debugger
+            debugger
             var movie = new Movie($title, $year, $movieId, $overview, $poster)
 
             $('#results').append(
