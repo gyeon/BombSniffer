@@ -5,12 +5,13 @@
   <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.scss">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 
-
     <script src="lib/jquery.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="models/actor.js"></script>
     <script src="models/director.js"></script>
     <script src="models/movie.js"></script>
@@ -18,6 +19,7 @@
     <script src="controllers/directorsController.js"></script>
     <script src="controllers/actorsController.js"></script>
     <script src="controllers/moviesController.js"></script>
+
   </head>
 
   <body>
@@ -39,7 +41,7 @@
           </div>
           <!-- dropdown -->
           <div class="col-md-3">
-            <select id="searchType" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            <select id="searchType" class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
               <option value="actor" id="searchActor">Seach by Actor</option>
               <option value="director" id="searchDirector">Seach by Director</option>
             </select>
@@ -47,25 +49,18 @@
        <!--  </div> <br> -->
       <!-- submit button -->
       <div class="col-md-3">
-          <input type="submit" class="btn btn-default">
-           <span class="glyphicon glyphicon-search"></span>
-           </input>
-          </div>
-      
+       <button id= "submit" type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </div>
       </div>
-    </form> <br>
-    </div>
-    </div>
+    </form> 
+  </div>
+</div>
 
-    <div class ="row" id="results"></div>
-   <!--  <div class="row" id="movieTitles"></div>
-    <div class="row" id="moviePosters"></div> <br>
-    <div class="row" id="movieReviews"></div>
-    <div class="row" id="youtubeLink"></div> -->
-
-    </div>
-    <br>
-    <div id="youtubeFrame"></div>
+<div id="results"></div>
+  
+    <div id="imdbFrame"></div>
 
     <!-- bootstrap for javascript -->
 

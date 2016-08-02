@@ -1,9 +1,18 @@
-.movieTitles:hover {
-  color: red;
+body {
+  background-color: #E5E5E5;
+}
+
+.container-fluid {
+  margin: 0 auto;
 }
 
 .jumbotron { 
     background-color: #ffffff; /* white */
+    padding-bottom: 0;
+}
+
+.jumbotron p {
+  font-size: 12px;
 }
 
 
@@ -20,4 +29,23 @@
 form {
   display: inline-block;
   margin: 0 auto;
+}
+
+#results {
+  margin-top: 4em;
+  font-family: 'Lato', sans-serif;  
+  width: 100%;
+  margin: 0 auto;
+}
+
+.movies {
+  margin-left: 3.33%
+}
+
+.movieTitles {
+  font-size: 20px;
+}
+
+.movieOverviews {
+  margin-top: 2em;
 }

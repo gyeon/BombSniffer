@@ -5,8 +5,8 @@ const Store = {
 }
 
 $(function() {
-  $('form').on('submit', function(event) {
-    event.preventDefault()
+  $('#submit').on('click', function(event) {
+  
     $("#results").empty()
     var searchType = $("select#searchType").val()
     if(searchType === "actor") {
