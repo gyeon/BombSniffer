@@ -1,8 +1,9 @@
 var actorsController = (function(){
   var counter = 0
   function searchActors() {
-    // debugger
+    debugger
     //get user input
+    Store.movies = []
     var userInput = $('#searchTerms').val()
     //search for person
     $.ajax({
