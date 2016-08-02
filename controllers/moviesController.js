@@ -2,7 +2,7 @@ var moviesController = (function(){
   function youtubeFrame(link) {
     $('#youtubeFrame').empty()
     $('#youtubeFrame').append(
-      `<iframe width="420" height="315" src="${link}?autoplay=1"></iframe>`
+      `<iframe style="margin: auto" width="100%" height="540px" src="${link}?autoplay=1"></iframe>`
       )
     }
 

@@ -6,21 +6,22 @@ const Store = {
 
 $(function() {
   $('#submit').on('click', function(event) {
-  
-    $("#results").empty()
+    // Store.movies = []
+
+    // debugger
     var searchType = $("select#searchType").val()
     if(searchType === "actor") {
-      actorsController.searchActors()
+
+      actorsController.init()
     }
     else {
-     directorsController.searchDirectors()
+     directorsController.init()
     }
   })
 
   $('body').on('click', '.moviePosters', function(){
     console.log(this)
     var youtubeId = $(this).attr("id")
-    debugger
     moviesController.youtubeFrame(youtubeId)
   })
 })
