@@ -1,12 +1,12 @@
 var moviesController = (function(){
-  
-  function imdbFrame(id) {
-    $('#imdbFrame').empty()
-    $('#imdbFrame').append(
-      `<iframe src="http://www.imdb.com/title/${id}/"></iframe>`
+  function youtubeFrame(link) {
+    $('#youtubeFrame').empty()
+    $('#youtubeFrame').append(
+      `<iframe width="420" height="315" src="${link}?autoplay=1"></iframe>`
       )
     }
+
   return {
-    imdbFrame
+    youtubeFrame
   }
 }())
