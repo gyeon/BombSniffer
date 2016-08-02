@@ -118,16 +118,27 @@ var actorsController = (function(){
     $("#results").empty()
     bottomFive().forEach((movie) =>{
       var boxOffice
-        var phrase = "Box Office Loss: "
+        var phrase = "Loss: "
         var money = movie.budget - movie.revenue
+        moneyString = money.toString().split("")
+        if (moneyString[0] === "-"){moneyString.shift()}
+        j = moneyString.length
+        for (i = j - 1; i >= 0; i--){
+          if((j - i) % 3 === 0 && moneyString[i] != ","){
+            moneyString.splice(i, 0, ",")
+          }
+        }
+        moneyString = moneyString.join("")
         if(money < 0) {
-          phrase = "Box Office Gain: "
-          money = money*(-1)
-          boxOffice = phrase + money
+          style = "color: green"
+          phrase = "Profit: "
+          boxOffice = phrase + "$" + moneyString
         }
         else {
-          boxOffice = phrase + money 
+          style = "color: red"
+          boxOffice = phrase + "$" + moneyString
         }
+
       $('#results').append(
       `<div class="col-md-2 movies" id="${movie.movieId}">
         <div class="movieTitles">
@@ -135,9 +146,7 @@ var actorsController = (function(){
           <h6>${movie.year}</h6>
         </div>
         <div class="movieMoney">
-          <h6>Budget: ${movie.budget}</h6>
-          <h6>Revenue: ${movie.revenue}</h6>
-          <h6>${boxOffice}</h6>
+          <h6 style="${style}">${boxOffice}</h6>
         </div>
         <div class="moviePosters" id="${movie.youtubeLink}">
            <img src="${movie.poster}" class="img-thumbnail" id='poster' style="width:150px;height:150px">
