@@ -1,0 +1,20 @@
+Controllers:
+
+  - consider using handlebars in your index, so you don't have to append & create a result every time
+  - then in your controllers, you can just have a function to render the data 
+  - then in your app.js, just call the function?
+
+
+  - don't know if this is worth doing, but in actors controller  having a results model might work better, so for each response.results you can just make a new movie without having to declare variables for every time
+
+  - in appendData(), maybe the moneyString bit could be in a different function? it looks like it is called in both controllers so could just have one function that does that for both
+
+app.js
+
+  - what's happening in here? if you're creating something, maybe this can go in the controller
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      - ah, but ok, i see what you did there.
+  
