@@ -4,7 +4,7 @@ var actorsController = (function(){
   var personId
 
   function init() {
-    
+
     var prom = searchActors().then(getMovies).then(getMovieInfo)
     prom.then(appendData)
   }

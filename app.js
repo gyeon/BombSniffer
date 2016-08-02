@@ -7,7 +7,8 @@ const Store = {
 $(function() {
   $('#submit').on('click', function(event) {
     // Store.movies = []
-
+    $('#results').empty()
+    $('iframe').css("display", "none")
     // debugger
     var searchType = $("select#searchType").val()
     if(searchType === "actor") {

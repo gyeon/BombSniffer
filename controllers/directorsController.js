@@ -27,7 +27,7 @@ var directorsController = (function(){
     return $.ajax({
       //search for movies of that person
       method: "GET",
-      url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&vote_count.gte=20&sort_by=vote_average.asc&budget.desc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
+      url: `https://api.themoviedb.org/3/discover/movie?with_crew=${personId}&vote_count.gte=20&sort_by=vote_average.asc&revenue.asc&api_key=bcd69b485671c77289868b4acf21bcf0&include_image_language=en`
     }).done(function(response) {
       // debugger
       //make all movie object for that actor
